@@ -87,32 +87,16 @@ func handleConn(conn io.ReadWriteCloser) error {
 	}
 
 	for {
-		p := &stream.Packet{}
-		err := dec.Decode(p)
-		if err != nil {
-			if err == io.EOF {
-				return err
-			}
-			dec = json.NewDecoder(conn)
-			continue
-		}
 
 		// For checking a packet's value use stream.IsMagicValue()
-		if stream.IsMagicValue(p.Value) {
-			fmt.Println("yeah!")
 
-			// hint: you can use solution.addValue()
-			solution.addValue(p.Value)
-			if len(solution.Values) == 3 {
-				break
-			}
-		}
+		// You can use solution.addValue()
 
 	}
 
-	url := "http://127.0.0.1:4000/stage3/submit.json" // the server's url
-	teamName := ""                                    // your team's name
-	err := solution.submit(url, teamName)             //
+	url := "http://forgot_to_update_IP:4000/stage3/submit.json" // the server's url
+	teamName := "YOUR TEAM NAME HERE !!!"                       // your team's name
+	err := solution.submit(url, teamName)                       //
 	if err != nil {
 		fmt.Println(err)
 		return nil
